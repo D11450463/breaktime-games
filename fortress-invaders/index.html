@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fortress Invaders | Breaktime Games</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="gameCanvas"></canvas>
+    <div id="hud">
+      <span class="stat">SCORE <b id="sScore">0</b></span>
+      <span class="stat">BEST <b id="sBest">0</b></span>
+      <span class="stat">WAVE <b id="sWave">1</b></span>
+      <span class="stat">ALIENS <b id="sAliens">0</b></span>
+      <span class="stat">🧱 <b id="sBlocks">5</b></span>
+      <span class="stat">❤️ <b id="sHp">3</b></span>
+      <span class="stat" id="sModeLabel" style="color:#ffdd00;margin-left:auto"></span>
+    </div>
+    <div id="btns">
+      <button class="gbtn" id="bBuild"  onclick="setMode('build')" >BUILD [B]</button>
+      <button class="gbtn" id="bRepair" onclick="setMode('repair')">REPAIR [R]</button>
+      <button class="gbtn" id="bPause"  onclick="togglePause()"   >PAUSE [P]</button>
+    </div>
+  </div>
+  <script src="js/game.js"></script>
+</body>
+</html>

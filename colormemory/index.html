@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Memory | Breaktime Games</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app">
+    <h1>Color Memory</h1>
+
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="level-text">Level 0 / 20</span>
+        <span id="phase-text">—</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" id="bar"></div></div>
+    </div>
+
+    <div id="status">Prepare yourself...</div>
+
+    <div class="grid">
+      <div class="square no-click" id="sq-red"    data-color="red">RED</div>
+      <div class="square no-click" id="sq-blue"   data-color="blue">BLUE</div>
+      <div class="square no-click" id="sq-green"  data-color="green">GREEN</div>
+      <div class="square no-click" id="sq-yellow" data-color="yellow">YELLOW</div>
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <!-- Start overlay -->
+  <div class="overlay" id="ov-start">
+    <div class="card">
+      <h2>🧠 Color Memory</h2>
+      <p>Watch the colored squares flash, then click them in the <strong>exact same order</strong>.</p>
+      <ul>
+        <li>Levels 1–5: Very easy &amp; slow</li>
+        <li>Levels 6–10: Squares flash faster</li>
+        <li>Levels 11–15: Long patterns, hard to remember</li>
+        <li>Levels 16–20: Super fast + squares <strong>swap places!</strong></li>
+      </ul>
+      <p>Remember the <strong>color</strong>, not just where it was!</p>
+      <button class="btn btn-start" onclick="startGame()">START GAME</button>
+    </div>
+  </div>
+
+  <!-- Game Over overlay -->
+  <div class="overlay hidden" id="ov-gameover">
+    <div class="card">
+      <h2 style="color:#ff4757">Game Over!</h2>
+      <p id="msg-gameover">Better luck next time.</p>
+      <button class="btn btn-danger" onclick="restartGame()">TRY AGAIN</button>
+    </div>
+  </div>
+
+  <!-- Win overlay -->
+  <div class="overlay hidden" id="ov-win">
+    <div class="card">
+      <h2 style="color:#2ed573">YOU WIN! 🎉</h2>
+      <p>Incredible! You conquered all <strong>20 levels</strong> of Color Memory!<br>Your memory is truly legendary!</p>
+      <button class="btn btn-win" onclick="restartGame()">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

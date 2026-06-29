@@ -1,0 +1,194 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0b0b18;
+  --surface: #12122a;
+  --surface2: #1a1a3e;
+  --border: #2a2a50;
+  --accent: #6366f1;
+  --accent2: #a855f7;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --radius: 16px;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(ellipse at 30% 20%, #1a1a3e 0%, #0b0b18 60%);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.site-header {
+  text-align: center;
+  padding: 3rem 1rem 1.5rem;
+}
+
+.site-header h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: 3px;
+  background: linear-gradient(135deg, #818cf8, #c084fc, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.site-header p {
+  color: var(--muted);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* ── Grid ── */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 4rem;
+}
+
+/* ── Game Card ── */
+.game-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.game-card:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.25);
+  border-color: var(--accent);
+}
+
+.game-card:hover .card-play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Card Banner ── */
+.card-banner {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* per-game accent colours */
+.card--rocket    .card-banner { background: linear-gradient(135deg, #0d0d2b, #001850, #003070); }
+.card--color     .card-banner { background: linear-gradient(135deg, #2d0030, #500060, #1a2060); }
+.card--fortress  .card-banner { background: linear-gradient(135deg, #001a00, #003300, #001a2e); }
+.card--tictactoe .card-banner { background: linear-gradient(135deg, #1a0020, #3d0050, #200035); }
+.card--hangman   .card-banner { background: linear-gradient(135deg, #1a001a, #2d1060, #0d1a30); }
+
+.card-banner span { position: relative; z-index: 1; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.6)); }
+
+/* ── Card Body ── */
+.card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.card-body h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #fff;
+}
+
+.card-body p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ── Tags ── */
+.card-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.3rem;
+}
+
+.tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 99px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.tag--blue   { background: rgba(99,102,241,0.18); color: #818cf8; border: 1px solid rgba(99,102,241,0.35); }
+.tag--purple { background: rgba(168,85,247,0.18); color: #c084fc; border: 1px solid rgba(168,85,247,0.35); }
+.tag--green  { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3);  }
+.tag--cyan   { background: rgba(6,182,212,0.15);  color: #22d3ee; border: 1px solid rgba(6,182,212,0.3);  }
+.tag--orange { background: rgba(249,115,22,0.15); color: #fb923c; border: 1px solid rgba(249,115,22,0.3); }
+
+/* ── Play button overlay ── */
+.card-play {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 0.55rem 1.5rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-align: center;
+  opacity: 0.85;
+  transform: scale(0.97);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.game-card:hover .card-play {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.75rem;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .games-grid { grid-template-columns: 1fr; padding: 1rem; }
+  .site-header { padding: 2rem 1rem 1rem; }
+}
