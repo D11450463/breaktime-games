@@ -93,7 +93,7 @@ function drawParts(){
       ctx.fillStyle=p.col; ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r);
     } else {
       ctx.beginPath(); ctx.arc(p.x,p.y,p.r*p.life,0,Math.PI*2);
-      ctx.fillStyle=p.col; ctx.shadowColor=p.col; ctx.shadowBlur=5; ctx.fill();
+      ctx.fillStyle=p.col; ctx.fill();
     }
     ctx.restore();
   });
@@ -304,6 +304,7 @@ function drawAlien(a){
   }
 
   if(a.flash>0){
+    ctx.shadowBlur=0;
     ctx.globalAlpha=a.flash*.7;
     ctx.fillStyle='#ffffff';
     ctx.beginPath(); ctx.ellipse(x,y,w/2+5,h/2+5,0,0,Math.PI*2); ctx.fill();
