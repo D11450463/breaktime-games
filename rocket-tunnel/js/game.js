@@ -418,7 +418,7 @@ class EnergyWall extends Obstacle {
   constructor() {
     super();
     this.h      = 18;
-    this.gap    = rnd(100, 155);
+    this.gap    = rnd(135, 190);
     this.gapX   = rnd(TL + 16, TR - this.gap - 16);
     this.color  = C.red;
     this.phase  = rnd(0, Math.PI * 2);
@@ -611,7 +611,7 @@ class Crystal {
 class BonusRing {
   constructor(x, y) {
     this.x = x; this.y = y;
-    this.r = 24; this.dead = false;
+    this.r = 16; this.dead = false;
     this.spin = rnd(0, Math.PI*2);
     this.phase = rnd(0, Math.PI*2);
   }
@@ -649,7 +649,7 @@ const PU_DURATIONS = { slowmo: 300, magnet: 360, hyper: 240 };
 class PowerUpItem {
   constructor(x, y, type) {
     this.x = x; this.y = y; this.type = type;
-    this.sz = 16; this.spin = rnd(0, Math.PI*2);
+    this.sz = 12; this.spin = rnd(0, Math.PI*2);
     this.phase = rnd(0, Math.PI*2); this.dead = false;
   }
   update(dt) {
@@ -869,14 +869,14 @@ function onHit() {
 
 let spawnT    = 0, obsRate    = 88;
 let crystalT  = 0, crystalRate = 32;
-let ringT     = 0, ringRate    = 190;
-let puSpawnT  = 0, puRate      = 550;
+let ringT     = 0, ringRate    = 260;
+let puSpawnT  = 0, puRate      = 680;
 let unlockedTypes = 1;
 
 function updateSpawning(dt) {
   spawnT   += dt; crystalT += dt; ringT += dt; puSpawnT += dt;
 
-  if (spawnT >= obsRate / 60) {
+  if (spawnT >= obsRate) {
     spawnT = 0;
     const t = rndI(1, unlockedTypes);
     if      (t === 1) obstacles.push(new EnergyWall());
@@ -885,7 +885,7 @@ function updateSpawning(dt) {
     else              obstacles.push(new LaserGate());
   }
 
-  if (crystalT >= crystalRate / 60) {
+  if (crystalT >= crystalRate) {
     crystalT = 0;
     collectibles.push(new Crystal(rnd(TL + 18, TR - 18), -18));
     if (activeEvent === 'crystalStorm') {
@@ -894,12 +894,12 @@ function updateSpawning(dt) {
     }
   }
 
-  if (ringT >= ringRate / 60) {
+  if (ringT >= ringRate) {
     ringT = 0;
     collectibles.push(new BonusRing(rnd(TL + 40, TR - 40), -25));
   }
 
-  if (puSpawnT >= puRate / 60) {
+  if (puSpawnT >= puRate) {
     puSpawnT = 0;
     const type = PU_TYPES[rndI(0, PU_TYPES.length - 1)];
     powerItems.push(new PowerUpItem(rnd(TL + 30, TR - 30), -25, type));
@@ -1157,7 +1157,7 @@ function startGame() {
   activeEvent = null; eventTimer = 0; blackoutAlpha = 0;
   nextEventSec = rnd(25, 45); banner = null; bannerLife = 0;
   spawnT = 0; crystalT = 0; ringT = 0; puSpawnT = 0;
-  obsRate = 88; crystalRate = 32; ringRate = 190; puRate = 550;
+  obsRate = 88; crystalRate = 32; ringRate = 260; puRate = 680;
   unlockedTypes = 1; gridScroll = 0; goT = 0;
 
   state = ST.PLAY;
